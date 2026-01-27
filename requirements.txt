@@ -1,8 +1,9 @@
 fastapi
 uvicorn[standard]
 python-dotenv
-openai=
+openai
 pandas
 openpyxl
 jinja2
 python-multipart
+
