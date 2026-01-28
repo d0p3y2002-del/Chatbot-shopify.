@@ -236,5 +236,13 @@ body[data-theme="dark"] .avatar{
   text-decoration: underline;
   font-weight: 600;
 }
+.composer{
+  padding:10px 14px 14px 14px;
+  background:linear-gradient(0deg,var(--panel),rgba(17,17,22,.85));
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
 
 
