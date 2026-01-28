@@ -201,5 +201,25 @@ body[data-theme="dark"] .avatar{
 .chat-footer{
   flex: 0 0 auto;
 }
+.chat-footer{
+  display: block;
+  overflow: visible;
+}
+
+.powered-by{
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin-top: 8px;
+  padding: 6px 0;
+  font-size: 12px;
+  text-align: center;
+}
+
+.powered-by a{
+  color: inherit;
+  text-decoration: underline;
+  font-weight: 600;
+}
 
 
