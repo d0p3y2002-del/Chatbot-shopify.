@@ -1,7 +1,3 @@
-<div style="background:red;color:white;padding:10px;font-weight:900;">
-  🔴 THIS IS widget.html 🔴
-</div>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -29,16 +25,25 @@
 <body data-theme="{{ brand.theme }}">
   <div class="chat-shell">
     <header class="chat-header">
-      <div class="brand">
-        {% if brand.logo_url %}
-          <img class="logo" src="{{ brand.logo_url }}" alt="Logo" />
-        {% endif %}
+      <div class="header-left">
+        <div class="avatar">
+          {% if brand.logo_url %}
+            <img class="logo" src="{{ brand.logo_url }}" alt="{{ brand.gym_display_name }} logo" />
+          {% else %}
+            <span class="logo-fallback">{{ (brand.gym_display_name or "G")[:1] }}</span>
+          {% endif %}
+        </div>
+
         <div class="titles">
           <div class="name">{{ brand.gym_display_name }}</div>
-          <div class="sub">Chat</div>
+          <div class="sub">
+            <span class="status-dot" aria-hidden="true"></span>
+            Chat
+          </div>
         </div>
       </div>
     </header>
+
 
     <main id="messages" class="chat-messages" aria-live="polite"></main>
 
@@ -57,12 +62,10 @@
 
       <!-- ✅ Powered-by line under the text bar -->
       <div class="powered-by">
-        <a href="{{ brand.powered_by_url }}" target="_blank" rel="noopener noreferrer">
-          {{ brand.powered_by_text }}
-        </a>
-      </div>
-    </footer>
-  </div>
+  <a href="https://gym-chat-bots.myshopify.com/?_ab=0&_fd=0&_sc=1&pb=0" target="_blank" rel="noopener noreferrer">
+    Powered by Gym Chat Bot
+  </a>
+</div>
 
   <script>
     const gymName = {{ gym_name|tojson }};
@@ -153,4 +156,5 @@
   </script>
 </body>
 </html>
+
 
