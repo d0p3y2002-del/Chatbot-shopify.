@@ -6,592 +6,337 @@
   <title>{{ brand.gym_display_name }} — Chat</title>
   <style>
     :root{
-      --bg:#ffffff;
-      --panel:#ffffff;
-      --text:#111827;          /* near-black */
-      --muted:#6b7280;         /* gray */
-      --border:#e5e7eb;        /* light border */
-      --blue:#2563eb;          /* accent */
-      --blue-soft:#eaf1ff;     /* soft blue background */
-      --shadow:0 14px 40px rgba(15,23,42,.10);
-      --radius:14px;
-      --radius-sm:10px;
-      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --bg:#0b0b0d;
+      --panel:#111116;
+      --panel2:#15151c;
+      --text:#f2f2f4;
+      --muted:#a9a9b2;
+      --border:rgba(255,255,255,.10);
+      --accent: {{ brand.primary_color }};
+      --bubble:#181821;
+      --bubble2:#0f0f14;
     }
-
-    *{box-sizing:border-box}
+    *{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;}
     body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:var(--font);
-
-      
+      margin:0;background:var(--bg);color:var(--text);
+      height:100vh;display:flex;flex-direction:column;
     }
-
-    /* Layout */
-    .wrap{
-      height:100vh;
-      display:flex;
-      flex-direction:column;
-      background:linear-gradient(180deg,#ffffff 0%, #fbfbff 100%);
-    }
-
-    /* Header */
     .topbar{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding:14px 16px;
-      border-bottom:1px solid var(--border);
-      background:#fff;
-      position:sticky;
-      top:0;
-      z-index:10;
-    }
-    .burger{
-      width:40px;height:40px;
-      display:grid;place-items:center;
-      border:1px solid var(--border);
-      border-radius:12px;
-      background:#fff;
-      cursor:pointer;
-    }
-    .burger span{
-      display:block;
-      width:18px;height:2px;
-      background:var(--text);
-      position:relative;
-    }
-    .burger span::before,.burger span::after{
-      content:"";
-      position:absolute;left:0;
-      width:18px;height:2px;background:var(--text);
-    }
-    .burger span::before{top:-6px}
-    .burger span::after{top:6px}
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
+      display:flex;gap:10px;align-items:center;
+      padding:14px 14px;border-bottom:1px solid var(--border);
+      background:linear-gradient(180deg,var(--panel),rgba(17,17,22,.85));
     }
     .logo{
-      width:34px;height:34px;
-      border-radius:10px;
-      overflow:hidden;
+      width:30px;height:30px;border-radius:8px;overflow:hidden;
+      background:var(--panel2);display:flex;align-items:center;justify-content:center;
       border:1px solid var(--border);
-      background:#fff;
-      display:grid;place-items:center;
-      flex:0 0 auto;
     }
-    .logo img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-    .brand-txt{
-      display:flex;
-      flex-direction:column;
-      min-width:0;
-      line-height:1.1;
-    }
-    .brand-name{
-      font-weight:700;
-      font-size:14px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .brand-sub{
-      font-size:12px;
-      color:var(--muted);
-      margin-top:2px;
-    }
+    .logo img{width:100%;height:100%;object-fit:contain;}
+    .titlewrap{display:flex;flex-direction:column;line-height:1.2}
+    .title{font-weight:700;font-size:14px}
+    .subtitle{font-size:12px;color:var(--muted)}
 
-    /* Chat */
     .chat{
-      flex:1;
-      overflow:auto;
-      padding:18px 16px 10px;
+      flex:1;overflow:auto;padding:16px;
     }
+    .row{display:flex;margin:10px 0;}
+    .row.user{justify-content:flex-end;}
     .bubble{
-      max-width:860px;
-      width:fit-content;
-      padding:12px 14px;
-      border-radius:14px;
+      max-width:85%;
       border:1px solid var(--border);
-      box-shadow:0 1px 0 rgba(15,23,42,.03);
-      margin:10px 0;
+      background:var(--bubble);
+      padding:10px 12px;border-radius:12px;
       white-space:pre-wrap;
-      word-wrap:break-word;
+      box-shadow:0 10px 25px rgba(0,0,0,.18);
+      font-size:13.5px;
     }
-    .bubble.bot{
-      background:var(--blue-soft);
+    .row.user .bubble{
+      background:rgba(255,255,255,.06);
+      border-color:rgba(255,255,255,.12);
+    }
+
+    .links{
+      display:flex;flex-wrap:wrap;gap:8px;margin-top:10px
+    }
+    .linkbtn{
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
       color:var(--text);
-    }
-    .bubble.user{
-      margin-left:auto;
-      background:#111827;
-      color:#fff;
-      border-color:#111827;
-    }
-
-    /* Links row (buttons) */
-    .links-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin:8px 0 2px;
-    }
-    .link-btn{
-      border:1px solid rgba(37,99,235,.25);
-      background:#fff;
-      color:var(--blue);
+      padding:8px 10px;
       border-radius:999px;
-      padding:10px 12px;
-      font-weight:600;
-      font-size:13px;
+      font-size:12.5px;
       cursor:pointer;
-      transition:.15s;
+      text-decoration:none;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
     }
-    .link-btn:hover{background:var(--blue-soft)}
-    .link-btn:active{transform:translateY(1px)}
+    .linkbtn:hover{border-color:rgba(255,255,255,.25)}
 
-    /* CTA (enquiry) */
-    .cta-wrap{
+    /* ✅ CTA bar: hidden by default; shown only when needed */
+    .ctaBar{
+      display:none;
+      padding:10px 14px 0 14px;
+      background:linear-gradient(0deg,var(--panel),rgba(17,17,22,.85));
       border-top:1px solid var(--border);
-      background:#fff;
-      padding:12px 16px 12px;
     }
-    .cta-bar{
-      display:none; /* only show when needed */
-      margin-bottom:10px;
-    }
-    .cta-button{
+    .ctaButton{
       width:100%;
       border:none;
-      background:var(--blue);
-      color:#fff;
-      font-weight:700;
+      background:var(--accent);
+      color:#000;
+      font-weight:800;
       padding:12px 14px;
       border-radius:12px;
       cursor:pointer;
-      box-shadow:0 10px 22px rgba(37,99,235,.18);
+      box-shadow:0 12px 30px rgba(0,0,0,.25);
     }
-    .cta-button:hover{filter:brightness(.97)}
-    .cta-button:active{transform:translateY(1px)}
 
-    /* Input row */
     .composer{
-      display:flex;
-      gap:10px;
-      align-items:flex-end;
+      padding:10px 14px 14px 14px;
+      background:linear-gradient(0deg,var(--panel),rgba(17,17,22,.85));
     }
-    .input{
-      flex:1;
-      resize:none;
-      padding:12px 12px;
-      border-radius:12px;
-      border:1px solid var(--border);
-      outline:none;
-      font-family:var(--font);
-      font-size:14px;
-      min-height:46px;
-      max-height:120px;
-      background:#fff;
-      color:var(--text);
+    .inputrow{display:flex;gap:10px;}
+    input{
+      flex:1;border-radius:12px;border:1px solid var(--border);
+      background:rgba(255,255,255,.04);color:var(--text);
+      padding:12px 12px;font-size:13.5px;outline:none;
     }
-    .input:focus{border-color:rgba(37,99,235,.45); box-shadow:0 0 0 4px rgba(37,99,235,.10)}
+      <div class="powered-by">
+    <a href="{{ brand.powered_by_url }}" target="_blank" rel="noopener noreferrer">
+      Powered by {{ brand.powered_by_text }}
+    </a>
+  </div>
+    }
     .send{
-      border:none;
-      background:#111827;
-      color:#fff;
-      font-weight:700;
-      padding:12px 16px;
-      border-radius:12px;
-      cursor:pointer;
-      min-width:84px;
+      width:74px;border:none;border-radius:12px;
+      background:var(--accent);color:#000;font-weight:800;cursor:pointer;
     }
-    .send:hover{filter:brightness(.97)}
-    .send:active{transform:translateY(1px)}
-    .hint{
-      font-size:12px;
-      color:var(--muted);
-      margin-top:8px;
-    }
-    .powered-by{
-  margin-top:8px;
-  font-size:12px;
-  color:var(--muted);
-  text-align:center;
-}
-.powered-by a{
-  color:inherit;
-  text-decoration:none;
-  font-weight:600;
-}
-.powered-by a:hover{
-  text-decoration:underline;
-}
+
     /* Modal */
-    .modal-backdrop{
-      position:fixed; inset:0;
-      background:rgba(17,24,39,.40);
-      display:none;
-      place-items:center;
-      padding:20px;
-      z-index:9999;
+    .modalBg{
+      position:fixed;inset:0;background:rgba(0,0,0,.60);
+      display:none;align-items:center;justify-content:center;padding:16px;
     }
     .modal{
-      width:min(520px, 100%);
-      background:#fff;
-      border-radius:16px;
-      box-shadow:var(--shadow);
-      border:1px solid var(--border);
-      overflow:hidden;
+      width:100%;max-width:520px;
+      background:var(--panel);border:1px solid var(--border);
+      border-radius:16px;padding:14px;
+      box-shadow:0 30px 80px rgba(0,0,0,.55);
     }
-    .modal-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:14px 16px;
-      border-bottom:1px solid var(--border);
+    .modal h3{margin:0 0 10px 0;font-size:15px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .grid .full{grid-column:1/-1}
+    textarea{
+      width:100%;min-height:110px;resize:vertical;
+      border-radius:12px;border:1px solid var(--border);
+      background:rgba(255,255,255,.04);color:var(--text);
+      padding:10px 12px;font-size:13.5px;outline:none;
     }
-    .modal-title{
-      font-weight:800;
-      font-size:14px;
-    }
-    .modal-close{
-      border:1px solid var(--border);
-      background:#fff;
-      border-radius:10px;
-      padding:8px 10px;
-      cursor:pointer;
-    }
-    .modal-body{
-      padding:14px 16px 16px;
-      display:grid;
-      gap:10px;
-    }
-    .field{
-      display:grid;
-      gap:6px;
-    }
-    .field label{
-      font-size:12px;
-      color:var(--muted);
-      font-weight:600;
-    }
-    .field input, .field textarea{
-      border:1px solid var(--border);
-      border-radius:12px;
-      padding:10px 12px;
-      font-size:14px;
-      font-family:var(--font);
-      outline:none;
-      background:#fff;
-      color:var(--text);
-    }
-    .field input:focus, .field textarea:focus{
-      border-color:rgba(37,99,235,.45);
-      box-shadow:0 0 0 4px rgba(37,99,235,.10);
-    }
-    .modal-actions{
-      display:flex;
-      gap:10px;
-      justify-content:flex-end;
-      padding:0 16px 16px;
-    }
+    .modalActions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
     .btn{
-      border-radius:12px;
-      padding:10px 12px;
-      border:1px solid var(--border);
-      background:#fff;
-      cursor:pointer;
-      font-weight:700;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      padding:10px 12px;border-radius:12px;cursor:pointer;
     }
     .btn.primary{
-      border:none;
-      background:var(--blue);
-      color:#fff;
+      border:none;background:var(--accent);color:#000;font-weight:800;
     }
 
-    /* Mobile tweaks */
-    @media (max-width:520px){
-      .chat{padding:14px 12px 10px}
-      .cta-wrap{padding:12px}
-      .send{min-width:72px}
-      .bubble{max-width:95%}
+    @media (max-width:420px){
+      .chat{padding:12px}
+      .bubble{max-width:92%}
+      .grid{grid-template-columns:1fr}
+      .send{width:68px}
     }
   </style>
 </head>
-
 <body>
-  <div class="wrap">
-    <div class="topbar">
-      <button class="burger" title="Menu (optional)">
-        <span></span>
-      </button>
-
-      <div class="brand">
-        <div class="logo">
-          {% if brand.logo_url %}
-            <img src="{{ brand.logo_url }}" alt="logo" />
-          {% else %}
-            <span style="font-weight:900;color:#111827;">GC</span>
-          {% endif %}
-        </div>
-        <div class="brand-txt">
-          <div class="brand-name">{{ brand.gym_display_name }}</div>
-          <div class="brand-sub">AI assistant</div>
-        </div>
-      </div>
+  <div class="topbar">
+    <div class="logo">
+      {% if brand.logo_url %}
+        <img src="{{ brand.logo_url }}" alt="logo"/>
+      {% else %}
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:800;">≡</div>
+      {% endif %}
     </div>
+    <div class="titlewrap">
+      <div class="title">{{ brand.gym_display_name }}</div>
+      <div class="subtitle">AI receptionist</div>
+    </div>
+  </div>
 
-    <div id="chat" class="chat"></div>
+  <div id="chat" class="chat"></div>
 
-        <!-- CTA + composer -->
-<div class="cta-wrap">
-  <!-- CTA appears ONLY when backend sends cta -->
-  <div id="ctaBar" class="cta-bar">
-    <button id="ctaBtn" class="cta-button">Send enquiry</button>
+  <!-- ✅ CTA ABOVE INPUT, but hidden unless needed -->
+  <div id="ctaBar" class="ctaBar">
+    <button id="ctaBtn" class="ctaButton">Send enquiry</button>
   </div>
 
   <div class="composer">
-    <textarea id="input" class="input" placeholder="Ask a question..." rows="1"></textarea>
-    <button id="send" class="send">Send</button>
-  </div>
-
-  <!-- ✅ Powered-by line under the text bar -->
- <div class="powered-by">
-  <a href="https://gym-chat-bots.myshopify.com/?_ab=0&_fd=0&_sc=1&pb=0" target="_blank" rel="noopener noreferrer">
-    Powered by Gym Chat Bot
-  </a>
-</div>
-
-
-<div class="hint">Tip: Ask about pricing, setup, or how the chatbot works.</div>
-
+    <div class="inputrow">
+      <input id="q" placeholder="Ask about classes, coaches, joining…" />
+      <button id="send" class="send">Send</button>
     </div>
   </div>
 
-  <!-- Enquiry modal -->
-  <div id="modalBackdrop" class="modal-backdrop">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modal-head">
-        <div id="modalTitle" class="modal-title">Send an enquiry</div>
-        <button id="modalClose" class="modal-close">Close</button>
-      </div>
-
-      <div class="modal-body">
-        <div class="field">
-          <label>Name</label>
-          <input id="leadName" type="text" placeholder="Your name" />
-        </div>
-        <div class="field">
-          <label>Email</label>
-          <input id="leadEmail" type="email" placeholder="you@example.com" />
-        </div>
-        <div class="field">
-          <label>Phone (optional)</label>
-          <input id="leadPhone" type="tel" placeholder="07..." />
-        </div>
-        <div class="field">
-          <label>Message</label>
-          <textarea id="leadMsg" rows="4" placeholder="How can we help?"></textarea>
+  <!-- Modal -->
+  <div id="modalBg" class="modalBg">
+    <div class="modal">
+      <h3 id="modalTitle">Send an enquiry</h3>
+      <div class="grid">
+        <input id="leadName" placeholder="Name" />
+        <input id="leadPhone" placeholder="Phone" />
+        <input id="leadEmail" class="full" placeholder="Email" />
+        <div class="full">
+          <textarea id="leadMsg" placeholder="Message"></textarea>
         </div>
       </div>
-
-      <div class="modal-actions">
-        <button id="modalCancel" class="btn">Cancel</button>
-        <button id="modalSend" class="btn primary">Send</button>
+      <div class="modalActions">
+        <button id="closeModal" class="btn">Cancel</button>
+        <button id="submitLead" class="btn primary">Send details</button>
       </div>
     </div>
   </div>
 
   <script>
-    // Server-provided
-    const gymName = {{ gym_name | tojson }};
-    const welcome = {{ (brand.welcome_message or "Hi — welcome! How can I help?") | tojson }};
+    const gymName = {{ gym_name|tojson }};
+    const brand = {{ brand|tojson }};
 
-    const chatEl = document.getElementById('chat');
-    const inputEl = document.getElementById('input');
-    const sendBtn = document.getElementById('send');
+    const chatEl = document.getElementById("chat");
+    const qEl = document.getElementById("q");
+    const sendEl = document.getElementById("send");
 
-    // CTA UI
-    const ctaBar = document.getElementById('ctaBar');
-    const ctaBtn = document.getElementById('ctaBtn');
-    let lastCTA = null;
+    const ctaBar = document.getElementById("ctaBar");
+    const ctaBtn = document.getElementById("ctaBtn");
 
-    // Modal UI
-    const modalBackdrop = document.getElementById('modalBackdrop');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalClose = document.getElementById('modalClose');
-    const modalCancel = document.getElementById('modalCancel');
-    const modalSend = document.getElementById('modalSend');
+    const modalBg = document.getElementById("modalBg");
+    const closeModal = document.getElementById("closeModal");
+    const submitLead = document.getElementById("submitLead");
+    const modalTitle = document.getElementById("modalTitle");
+    const leadMsg = document.getElementById("leadMsg");
 
-    const leadName = document.getElementById('leadName');
-    const leadEmail = document.getElementById('leadEmail');
-    const leadPhone = document.getElementById('leadPhone');
-    const leadMsg = document.getElementById('leadMsg');
+    let currentCTA = null; // {type,label,form_title,default_message}
 
-    function addBubble(text, who='bot'){
-      const div = document.createElement('div');
-      div.className = `bubble ${who}`;
-      div.textContent = text;
-      chatEl.appendChild(div);
-      chatEl.scrollTop = chatEl.scrollHeight;
+    function showCTA(cta) {
+      currentCTA = cta || null;
+      if (!currentCTA) {
+        ctaBar.style.display = "none";
+        return;
+      }
+      ctaBtn.textContent = currentCTA.label || "Send enquiry";
+      ctaBar.style.display = "block";
     }
 
-    function addLinks(links){
-      if(!links || !Array.isArray(links) || links.length === 0) return;
-      const row = document.createElement('div');
-      row.className = 'links-row';
+    function hideCTA() {
+      currentCTA = null;
+      ctaBar.style.display = "none";
+    }
 
-      links.forEach(l => {
-        const btn = document.createElement('button');
-        btn.className = 'link-btn';
-        btn.textContent = l.label || 'Open link';
-        btn.onclick = () => window.open(l.url, '_blank', 'noopener,noreferrer');
-        row.appendChild(btn);
-      });
+    function addBubble(text, who="bot", links=[]) {
+      const row = document.createElement("div");
+      row.className = "row " + (who === "user" ? "user" : "bot");
 
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+      bubble.textContent = text;
+
+      if (Array.isArray(links) && links.length) {
+        const linksDiv = document.createElement("div");
+        linksDiv.className = "links";
+        links.forEach(l => {
+          const a = document.createElement("a");
+          a.className = "linkbtn";
+          a.href = l.url;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.textContent = l.label || "Open link";
+          linksDiv.appendChild(a);
+        });
+        bubble.appendChild(linksDiv);
+      }
+
+      row.appendChild(bubble);
       chatEl.appendChild(row);
       chatEl.scrollTop = chatEl.scrollHeight;
     }
 
-    function showCTA(cta){
-      // cta: {type:"enquiry", label:"Send enquiry", form_title:"...", default_message:""}
-      if(!cta){
-        ctaBar.style.display = 'none';
-        lastCTA = null;
-        return;
-      }
-      lastCTA = cta;
-      ctaBtn.textContent = cta.label || 'Send enquiry';
-      ctaBar.style.display = 'block';
-    }
+    // Welcome message (force first letter uppercase)
+    const welcome = (brand.welcome_message || "Hi — welcome! How can I help?");
+    const fixedWelcome = welcome.length ? welcome[0].toUpperCase() + welcome.slice(1) : welcome;
+    addBubble(fixedWelcome, "bot");
 
-    function openModal(){
-      if(!lastCTA) return;
-      modalTitle.textContent = lastCTA.form_title || 'Send an enquiry';
-      leadMsg.value = lastCTA.default_message || '';
-      modalBackdrop.style.display = 'grid';
-      setTimeout(() => leadName.focus(), 50);
-    }
+    async function ask(question) {
+      // If user continues chatting normally, remove CTA unless backend asks for it again
+      hideCTA();
 
-    function closeModal(){
-      modalBackdrop.style.display = 'none';
-    }
+      addBubble(question, "user");
+      qEl.value = "";
 
-    // ✅ CTA button opens modal
-    ctaBtn.addEventListener('click', openModal);
-    modalClose.addEventListener('click', closeModal);
-    modalCancel.addEventListener('click', closeModal);
-    modalBackdrop.addEventListener('click', (e) => { if(e.target === modalBackdrop) closeModal(); });
-
-    // NOTE: you already have an enquiry endpoint in your backend in earlier versions.
-    // If your current backend expects /lead/{gym} or similar, change this function.
-    async function submitLead(){
-      const payload = {
-        name: leadName.value.trim(),
-        email: leadEmail.value.trim(),
-        phone: leadPhone.value.trim(),
-        message: leadMsg.value.trim()
-      };
-
-      // Basic validation
-      if(!payload.name || !payload.email || !payload.message){
-        alert("Please add your name, email, and message.");
-        return;
-      }
-
-      // Try common endpoints (edit to match your server if different)
-      const endpoints = [
-        `/lead/${encodeURIComponent(gymName)}`,
-        `/enquiry/${encodeURIComponent(gymName)}`,
-        `/leads/${encodeURIComponent(gymName)}`
-      ];
-
-      let ok = false;
-      for(const url of endpoints){
-        try{
-          const res = await fetch(url, {
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body: JSON.stringify(payload)
-          });
-          if(res.ok){ ok = true; break; }
-        }catch(err){}
-      }
-
-      if(ok){
-        closeModal();
-        addBubble("Thanks — your enquiry has been sent. Someone will be in touch soon.", "bot");
-        showCTA(null);
-        leadName.value = leadEmail.value = leadPhone.value = leadMsg.value = "";
-      }else{
-        alert("Your server doesn't have a lead endpoint set up (yet). Tell me what your lead endpoint is, and I’ll wire it perfectly.");
-      }
-    }
-
-    modalSend.addEventListener('click', submitLead);
-
-    // Auto-grow textarea
-    function autoGrow(){
-      inputEl.style.height = 'auto';
-      inputEl.style.height = Math.min(inputEl.scrollHeight, 120) + 'px';
-    }
-    inputEl.addEventListener('input', autoGrow);
-
-    // Send message
-    async function sendMessage(){
-      const q = inputEl.value.trim();
-      if(!q) return;
-
-      addBubble(q, 'user');
-      inputEl.value = '';
-      autoGrow();
-
-      showCTA(null); // reset; backend may re-enable if needed
-
-      try{
+      try {
         const res = await fetch(`/chat/${encodeURIComponent(gymName)}`, {
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({question:q})
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({question})
         });
+
         const data = await res.json();
+        if (!res.ok) {
+          addBubble("Something went wrong. Please try again.", "bot");
+          return;
+        }
 
-        addBubble(data.answer || "Sorry — something went wrong.", 'bot');
+        addBubble(data.answer || "Thanks — how can I help?", "bot", data.links || []);
 
-        // Link buttons (only when backend sends them)
-        if(data.links) addLinks(data.links);
+        // ✅ Only show CTA button when backend says it's needed
+        if (data.cta && data.cta.type === "enquiry") {
+          showCTA(data.cta);
+        } else {
+          hideCTA();
+        }
 
-        // CTA only when backend sends it
-        if(data.cta) showCTA(data.cta);
-      }catch(err){
-        addBubble("Server not reachable. Make sure Uvicorn is running.", "bot");
+      } catch (e) {
+        addBubble("Couldn’t reach the server. Please try again.", "bot");
       }
     }
 
-    sendBtn.addEventListener('click', sendMessage);
-    inputEl.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter' && !e.shiftKey){
-        e.preventDefault();
-        sendMessage();
+    sendEl.addEventListener("click", () => {
+      const q = qEl.value.trim();
+      if (!q) return;
+      ask(q);
+    });
+
+    qEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        const q = qEl.value.trim();
+        if (!q) return;
+        ask(q);
       }
     });
 
-    // Welcome message
-    addBubble(welcome, 'bot');
+    // CTA button opens modal
+    ctaBtn.addEventListener("click", () => {
+      if (!currentCTA) return;
+      modalTitle.textContent = currentCTA.form_title || "Send an enquiry";
+      leadMsg.value = currentCTA.default_message || "";
+      modalBg.style.display = "flex";
+    });
+
+    closeModal.addEventListener("click", () => {
+      modalBg.style.display = "none";
+    });
+
+    modalBg.addEventListener("click", (e) => {
+      if (e.target === modalBg) modalBg.style.display = "none";
+    });
+
+    // Demo submit (replace with your real submit endpoint if you have one)
+    submitLead.addEventListener("click", () => {
+      modalBg.style.display = "none";
+      hideCTA(); // after sending, hide CTA
+      addBubble("Thanks — we’ve received your enquiry and the team will be in touch shortly.", "bot");
+    });
   </script>
 </body>
 </html>
-
-
-
-
