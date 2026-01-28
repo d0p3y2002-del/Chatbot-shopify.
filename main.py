@@ -132,8 +132,9 @@ def load_brand(sheets: dict, gym_name: str) -> dict:
         "logo_url": "",
         "welcome_message": "Hi — welcome! How can I help?",
         "bot_mode": "gym",  # gym or demo
-        "powered_by_text": "",
-        "powered_by_url": "",
+        "powered_by_text": "Powered by Gym Chat Bot",
+        "powered_by_url": "https://gym-chat-bots.myshopify.com/?_ab=0&_fd=0&_sc=1&pb=0",
+
     }
 
     if "Brand" not in sheets:
@@ -540,5 +541,6 @@ def embed_js(request: Request, gym: str = ""):
 }})();
 """
     return Response(content=js, media_type="application/javascript")
+
 
 
