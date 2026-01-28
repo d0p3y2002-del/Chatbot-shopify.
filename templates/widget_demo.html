@@ -353,11 +353,28 @@
 
     <div id="chat" class="chat"></div>
 
-    <!-- CTA + composer -->
-    <div class="composer">
-  <textarea id="input" class="input" placeholder="Ask a question..." rows="1"></textarea>
-  <button id="send" class="send">Send</button>
+        <!-- CTA + composer -->
+<div class="cta-wrap">
+  <!-- CTA appears ONLY when backend sends cta -->
+  <div id="ctaBar" class="cta-bar">
+    <button id="ctaBtn" class="cta-button">Send enquiry</button>
+  </div>
+
+  <div class="composer">
+    <textarea id="input" class="input" placeholder="Ask a question..." rows="1"></textarea>
+    <button id="send" class="send">Send</button>
+  </div>
+
+  <!-- ✅ Powered-by line under the text bar -->
+  <div class="powered-by">
+    <a href="https://gym-chat-bots.myshopify.com/?_ab=0&_fd=0&_sc=1&pb=0" target="_blank" rel="noopener noreferrer">
+      Powered by Gym Chat Bot
+    </a>
+  </div>
+
+  <div class="hint">Tip: Ask about pricing, setup, or how the chatbot works.</div>
 </div>
+
 
 <!-- ✅ Powered-by line under the text bar -->
 <div class="powered-by">
@@ -584,4 +601,5 @@
   </script>
 </body>
 </html>
+
 
