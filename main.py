@@ -432,44 +432,56 @@ def chat_gym(gym_name: str, req: QuestionRequest):
 # Works on localhost AND when deployed (Render, etc.)
 # -----------------------
 @app.get("/embed.js", response_class=Response)
-def embed_js(request: Request, gym: str):
-    # Auto-detect the domain you’re running on
-    # - Local: http://127.0.0.1:8000/
-    # - Deployed: https://your-app.onrender.com/
+def embed_js(request: Request, gym: str = ""):
     base_url = str(request.base_url).rstrip("/")
 
     js = f"""
 (function() {{
-  var gymName = {gym!r};
+  var params = new URLSearchParams(window.location.search);
+  var gymName = params.get('gym') || {gym!r};
   var baseUrl = {base_url!r};
+
+  if (!gymName) {{
+    console.error('[Gym Chat Bot] Missing gym name. Use ?gym=YOUR_GYM');
+    return;
+  }}
 
   var wrap = document.createElement('div');
   wrap.style.position = 'fixed';
   wrap.style.bottom = '20px';
   wrap.style.right = '20px';
   wrap.style.zIndex = '999999';
-
-  var btn = document.createElement('button');
-  btn.innerText = 'Chat';
-  btn.style.width = '64px';
-  btn.style.height = '64px';
-  btn.style.borderRadius = '999px';
-  btn.style.border = 'none';
-  btn.style.cursor = 'pointer';
-  btn.style.boxShadow = '0 6px 18px rgba(0,0,0,0.2)';
-  btn.style.fontSize = '16px';
-  btn.style.background = '#111';
-  btn.style.color = '#fff';
+  wrap.style.fontFamily = 'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial';
 
   var panel = document.createElement('div');
   panel.style.width = '380px';
   panel.style.height = '560px';
-  panel.style.borderRadius = '16px';
-  panel.style.boxShadow = '0 12px 30px rgba(0,0,0,0.25)';
+  panel.style.borderRadius = '18px';
+  panel.style.boxShadow = '0 18px 50px rgba(0,0,0,0.28)';
   panel.style.overflow = 'hidden';
   panel.style.marginBottom = '12px';
   panel.style.display = 'none';
-  panel.style.background = '#fff';
+  panel.style.background = '#ffffff';
+  panel.style.position = 'relative';
+
+  var closeBtn = document.createElement('button');
+  closeBtn.setAttribute('aria-label', 'Close chat');
+  closeBtn.innerHTML = '&times;';
+  closeBtn.style.position = 'absolute';
+  closeBtn.style.top = '10px';
+  closeBtn.style.right = '10px';
+  closeBtn.style.width = '34px';
+  closeBtn.style.height = '34px';
+  closeBtn.style.borderRadius = '999px';
+  closeBtn.style.border = 'none';
+  closeBtn.style.cursor = 'pointer';
+  closeBtn.style.background = 'rgba(0,0,0,0.10)';
+  closeBtn.style.backdropFilter = 'blur(6px)';
+  closeBtn.style.fontSize = '22px';
+  closeBtn.style.lineHeight = '34px';
+  closeBtn.style.textAlign = 'center';
+  closeBtn.style.color = '#111';
+  closeBtn.style.zIndex = '2';
 
   var iframe = document.createElement('iframe');
   iframe.src = baseUrl + '/widget/' + encodeURIComponent(gymName);
@@ -478,11 +490,49 @@ def embed_js(request: Request, gym: str):
   iframe.style.border = 'none';
 
   panel.appendChild(iframe);
+  panel.appendChild(closeBtn);
 
-  btn.onclick = function() {{
+  var btn = document.createElement('button');
+  btn.setAttribute('aria-label', 'Open chat');
+  btn.style.width = '58px';
+  btn.style.height = '58px';
+  btn.style.borderRadius = '999px';
+  btn.style.border = 'none';
+  btn.style.cursor = 'pointer';
+  btn.style.boxShadow = '0 14px 30px rgba(0,0,0,0.25)';
+  btn.style.display = 'flex';
+  btn.style.alignItems = 'center';
+  btn.style.justifyContent = 'center';
+  btn.style.background = 'linear-gradient(135deg, #111827 0%, #0b1220 55%, #111827 100%)';
+  btn.style.color = '#fff';
+
+  btn.innerHTML = `
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M21 12a8 8 0 0 1-8 8H8l-5 3 1.5-4.5A8 8 0 1 1 21 12Z"
+        stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M8 12h.01M12 12h.01M16 12h.01"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  `;
+
+  function openPanel() {{
     panel.style.display = 'block';
     btn.style.display = 'none';
-  }};
+  }}
+
+  function closePanel() {{
+    panel.style.display = 'none';
+    btn.style.display = 'flex';
+  }}
+
+  btn.onclick = openPanel;
+  closeBtn.onclick = closePanel;
+
+  document.addEventListener('keydown', function(e) {{
+    if (e.key === 'Escape' && panel.style.display === 'block') {{
+      closePanel();
+    }}
+  }});
 
   wrap.appendChild(panel);
   wrap.appendChild(btn);
@@ -490,3 +540,5 @@ def embed_js(request: Request, gym: str):
 }})();
 """
     return Response(content=js, media_type="application/javascript")
+
+
