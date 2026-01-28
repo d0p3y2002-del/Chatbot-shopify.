@@ -124,18 +124,21 @@ body[data-theme="dark"] .chat-input{
 .powered-by{
   margin-top: 8px;
   font-size: 12px;
-  opacity: 0.75;
+  opacity: 0.85;
   text-align: center;
+  line-height: 1.2;
 }
 
 .powered-by a{
   color: inherit;
   text-decoration: none;
+  font-weight: 600;
 }
 
 .powered-by a:hover{
   text-decoration: underline;
 }
+
 
 .link-box{
   display:flex;
@@ -160,19 +163,43 @@ body[data-theme="dark"] .link-btn{
   background: rgba(255,255,255,0.10);
 }
 
-.powered-by {
-  margin-top: 6px;
-  font-size: 12px;
-  opacity: 0.75;
-  text-align: center;
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.powered-by a {
-  color: inherit;
-  text-decoration: none;
+.avatar{
+  width:36px;
+  height:36px;
+  border-radius:12px;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  background: rgba(0,0,0,0.06);
 }
 
-.powered-by a:hover {
-  text-decoration: underline;
+body[data-theme="dark"] .avatar{
+  background: rgba(255,255,255,0.10);
 }
+
+.logo-fallback{
+  font-weight:800;
+  font-size:14px;
+  opacity:0.9;
+}
+
+.status-dot{
+  display:inline-block;
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:#22c55e;
+  margin-right:6px;
+  vertical-align:middle;
+}
+.chat-footer{
+  flex: 0 0 auto;
+}
+
 
