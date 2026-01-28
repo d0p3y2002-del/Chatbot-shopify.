@@ -46,7 +46,7 @@
 
 
     <main id="messages" class="chat-messages" aria-live="polite"></main>
-
+   
     <footer class="chat-footer">
       <form id="chatForm" class="chat-form" autocomplete="off">
         <input
@@ -62,10 +62,12 @@
 
       <!-- ✅ Powered-by line under the text bar -->
       <div class="powered-by">
-  <a href="https://gym-chat-bots.myshopify.com/?_ab=0&_fd=0&_sc=1&pb=0" target="_blank" rel="noopener noreferrer">
-    Powered by Gym Chat Bot
-  </a>
-</div>
+        <a href="https://gym-chat-bots.myshopify.com/?_ab=0&_fd=0&_sc=1&pb=0" target="_blank" rel="noopener noreferrer">
+          Powered by Gym Chat Bot
+        </a>
+      </div>
+    </footer>
+  </div> <!-- /.chat-shell -->
 
   <script>
     const gymName = {{ gym_name|tojson }};
@@ -144,8 +146,6 @@
         addBubble(data.answer || 'OK', 'bot');
 
         if (data.links) addLinks(data.links);
-
-        // If you later want enquiry CTA button UI, you can render data.cta here.
       } catch (err) {
         addBubble('Network error. Please try again.', 'bot');
       } finally {
@@ -156,5 +156,7 @@
   </script>
 </body>
 </html>
+
+
 
 
