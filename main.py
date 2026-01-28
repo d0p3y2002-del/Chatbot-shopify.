@@ -175,13 +175,13 @@ def load_brand(sheets: dict, gym_name: str) -> dict:
     brand = {
         "theme": "dark",
         "primary_color": "#ff2ea6",
-        "secondary_color": "#ff2ea6",  # optional if you want it
+        "secondary_color": "#ff2ea6",
         "gym_display_name": gym_name,
         "logo_url": "",
         "welcome_message": "Hi — welcome! How can I help?",
         "booking_url": "",
 
-        # Powered by defaults
+        # EXACT powered-by defaults (as before)
         "powered_by_text": "Gym Chat Bot",
         "powered_by_url": "https://gym-chat-bots.myshopify.com/?_ab=0&_fd=0&_sc=1&pb=0",
     }
@@ -194,6 +194,37 @@ def load_brand(sheets: dict, gym_name: str) -> dict:
     if "Key" not in df.columns or "Value" not in df.columns:
         brand["welcome_message"] = titlecase_first_letter(brand["welcome_message"])
         return brand
+
+    mapping = {}
+    for _, row in df.iterrows():
+        k = str(row.get("Key", "")).strip()
+        v = str(row.get("Value", "")).strip()
+        if k and v and k.lower() != "nan" and v.lower() != "nan":
+            mapping[k] = v
+
+    brand["theme"] = mapping.get("Theme", brand["theme"])
+    brand["primary_color"] = mapping.get("PrimaryColor", brand["primary_color"])
+    brand["secondary_color"] = mapping.get("SecondaryColor", brand["secondary_color"])
+    brand["gym_display_name"] = mapping.get("GymDisplayName", brand["gym_display_name"])
+    brand["logo_url"] = mapping.get("LogoUrl", brand["logo_url"])
+    brand["welcome_message"] = mapping.get("WelcomeMessage", brand["welcome_message"])
+    brand["booking_url"] = mapping.get("BookingUrl", brand["booking_url"])
+
+    # Optional overrides (only if you add them to Brand sheet)
+    brand["powered_by_text"] = mapping.get("PoweredByText", brand["powered_by_text"])
+    brand["powered_by_url"] = mapping.get("PoweredByUrl", brand["powered_by_url"])
+
+    # Cleanups
+    brand["welcome_message"] = titlecase_first_letter(brand["welcome_message"])
+
+    # Safety: never allow blank powered-by
+    if not str(brand["powered_by_text"]).strip():
+        brand["powered_by_text"] = "Gym Chat Bot"
+    if not str(brand["powered_by_url"]).strip():
+        brand["powered_by_url"] = "https://gym-chat-bots.myshopify.com/?_ab=0&_fd=0&_sc=1&pb=0"
+
+    return brand
+
 
     mapping = {}
     for _, row in df.iterrows():
@@ -851,5 +882,6 @@ def embed_js(request: Request, gym: str):
 }})();
 """
     return Response(content=js, media_type="application/javascript")
+
 
 
