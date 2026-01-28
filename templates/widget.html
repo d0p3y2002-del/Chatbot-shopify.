@@ -169,6 +169,33 @@
 
   <div id="chat" class="chat"></div>
 
+  .composer{
+  padding:10px 14px 14px 14px;
+  background:linear-gradient(0deg,var(--panel),rgba(17,17,22,.85));
+  border-top:1px solid var(--border);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.footer{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  color: rgba(255,255,255,.55);
+  padding-top:2px;
+}
+
+.footer a{
+  color: rgba(255,255,255,.75);
+  text-decoration:none;
+  border-bottom: 1px dotted rgba(255,255,255,.35);
+}
+.footer a:hover{ color:#fff; }
+
+
   <!-- ✅ CTA ABOVE INPUT, but hidden unless needed -->
   <div id="ctaBar" class="ctaBar">
     <button id="ctaBtn" class="ctaButton">Send enquiry</button>
@@ -340,3 +367,4 @@
   </script>
 </body>
 </html>
+
