@@ -1,0 +1,155 @@
+timestamp,gym,question,source,cta_type
+2026-01-06T22:45:59,evolution,how do i join,cta_signup,signup
+2026-01-06T22:46:16,evolution,banansdklahdas,fallback_enquiry,enquiry
+2026-01-06T22:46:36,evolution,whats the 21 day challenge,fallback_enquiry,enquiry
+2026-01-06T22:47:01,evolution,whats the 21 day transformation,fallback_enquiry,enquiry
+2026-01-06T23:01:15,evolution,tell me about the 21 day challenge,links,
+2026-01-06T23:01:37,evolution,"what are the group classes, can you give me the timetable for them too",links,
+2026-01-06T23:01:46,evolution,whats the timetable,faq,
+2026-01-06T23:01:55,evolution,whats on monday morning,timetable,
+2026-01-06T23:02:10,evolution,who are the coaches,coaches,
+2026-01-06T23:02:17,evolution,tell me more about nick,fallback_enquiry,enquiry
+2026-01-06T23:02:33,evolution,give me nick's bio,fallback_enquiry,enquiry
+2026-01-07T22:18:54,evolution,where are you located?,links,
+2026-01-07T22:19:23,evolution,what classes are on a monday morning,timetable,
+2026-01-07T22:19:35,evolution,can you tell me more about SGPT,links,
+2026-01-07T22:19:47,evolution,who are some of your coaches,coaches,
+2026-01-07T22:19:56,evolution,who is jack,coaches,
+2026-01-07T22:20:13,evolution,"i see theres a 21 day challenge, whats this?",links,
+2026-01-07T22:20:23,evolution,okay i want to book a session,booking,
+2026-01-07T22:20:32,evolution,i want to sign up,cta_signup,signup
+2026-01-07T22:28:46,evolution,i want to register,cta_signup,signup
+2026-01-07T22:28:58,evolution,hi what are group classes,links,
+2026-01-07T22:44:21,evolution,what are 1-1 sessions,faq,
+2026-01-07T22:44:31,evolution,what about group training,links,
+2026-01-07T22:44:43,evolution,what about personal training,links,
+2026-01-07T22:44:54,evolution,where are you located,links,
+2026-01-07T22:45:18,evolution,what about coaches,coaches,
+2026-01-07T22:52:30,evolution,what classes are on monday,timetable,
+2026-01-07T22:52:41,evolution,can you show me timetable,faq,
+2026-01-07T22:53:46,evolution,what classes monday morning,timetable,
+2026-01-07T22:59:53,evolution,What classes are on Monday morning,timetable,
+2026-01-07T23:00:06,evolution,What can you tell me about group training,links,
+2026-01-07T23:00:22,evolution,I want to sign up,cta_signup,signup
+2026-01-08T18:24:19,evolution,whats the timetable,faq,
+2026-01-08T18:35:54,evolution,do you do car insurance,fallback_enquiry,enquiry
+2026-01-08T18:36:06,evolution,do you do cyrotherapy,fallback_enquiry,enquiry
+2026-01-08T18:36:35,evolution,does joe wick work at your gym?,faq,
+2026-01-08T18:36:43,evolution,are you hiring,links,
+2026-01-08T18:38:50,evolution,are you hiring,links,
+2026-01-08T18:39:00,evolution,is there a blog,links,
+2026-01-08T18:52:04,evolution,can you give me the timetable,links,
+2026-01-08T18:52:13,evolution,where are you located,links,
+2026-01-08T19:04:31,evolution,whats the timetable,timetable_link,
+2026-01-08T19:04:44,evolution,who are the coaches,coaches,
+2026-01-08T19:05:07,evolution,what is breathe,links,
+2026-01-08T19:28:55,evolution,what are the classes,group_training,
+2026-01-08T19:29:07,evolution,whats breathe,group_training,
+2026-01-08T19:29:17,evolution,who is 1-1 training,links,
+2026-01-08T19:29:32,evolution,tell me about the coaches,fallback_enquiry,enquiry
+2026-01-08T21:30:47,evolution,hi can you tell me about what classes you run,group_training,
+2026-01-08T21:39:28,evolution,tell me about your classes,links,
+2026-01-08T21:39:40,evolution,what classes are tomorrow morning,timetable,
+2026-01-08T21:39:46,evolution,what is move,links,
+2026-01-08T21:39:59,evolution,and move is a group class?,group_training,
+2026-01-08T21:40:07,evolution,who are the coaches,coaches,
+2026-01-08T21:52:18,evolution,tell me about the classes,fallback_enquiry,enquiry
+2026-01-08T21:52:43,evolution,are they group or invidivual,fallback_enquiry,enquiry
+2026-01-08T21:58:27,evolution,tell me about the classes,classes_overview
+2026-01-08T21:58:43,evolution,tell me about the 21 day programme,challenge
+2026-01-08T21:58:58,evolution,do you offer group or individual classes?,classes_overview
+2026-01-08T21:59:12,evolution,what classes are tomorrow morning?,timetable
+2026-01-08T21:59:16,evolution,tell me about move,fallback_enquiry
+2026-01-08T22:10:33,evolution,tell me about the classes,classes_overview
+2026-01-08T22:10:54,evolution,are they group or 1:1 classes,classes_overview
+2026-01-08T22:11:07,evolution,tell me about the 21 day challenge,challenge
+2026-01-08T22:11:16,evolution,what classes are tomorrow morning?,timetable
+2026-01-08T22:11:22,evolution,tell me about move,fallback_enquiry
+2026-01-08T22:13:47,evolution,what classes are tomorrow morning,timetable
+2026-01-08T22:13:51,evolution,tell me about move,fallback_enquiry
+2026-01-08T22:14:28,evolution,tell me about move,fallback_enquiry
+2026-01-08T22:26:54,evolution,what classes do you offer,classes_overview
+2026-01-08T22:27:08,evolution,tell me about the 21 day programme,challenge
+2026-01-08T22:27:23,evolution,what are the classes tomorrow morning?,timetable
+2026-01-08T22:27:29,evolution,tell me about move,class_inferred
+2026-01-08T22:27:41,evolution,what is it more specifically,fallback_enquiry
+2026-01-08T22:27:56,evolution,can you send a link where i can find out about move,location
+2026-01-08T22:28:09,evolution,tell me about group classes,classes_overview
+2026-01-08T22:28:23,evolution,who are the coaches,fallback_enquiry
+2026-01-08T22:28:33,evolution,tell me about the coaches,fallback_enquiry
+2026-01-08T22:36:54,evolution,tell me about the coaches,coaches_list
+2026-01-08T22:37:00,evolution,who is nick,coach_bio
+2026-01-08T22:37:09,evolution,who is emma,coach_bio
+2026-01-08T22:37:19,evolution,tell me about classes monday morning,timetable
+2026-01-08T22:37:24,evolution,what is sgpt,class_inferred
+2026-01-08T22:37:42,evolution,okay where are you located,location
+2026-01-08T22:37:47,evolution,id like to sign up,fallback_enquiry
+2026-01-08T22:37:58,evolution,id like to join,fallback_enquiry
+2026-01-11T21:39:54,evolution,Hi tell me about evolution fitness,fallback_enquiry
+2026-01-11T21:42:16,evolution,tell me about evolution fitness,links_knowledge
+2026-01-11T21:42:28,evolution,what classes are tomorrow morning?,timetable
+2026-01-11T21:42:34,evolution,Tell me about mov,links_knowledge
+2026-01-11T21:42:37,evolution,move,fallback_enquiry
+2026-01-11T21:42:43,evolution,Tell me about move,class_inferred
+2026-01-11T21:42:57,evolution,Do you offer both group and private sessions,classes_overview
+2026-01-11T21:43:05,evolution,tell me about the instructors,coaches_list
+2026-01-11T21:43:11,evolution,who is nick,coach_bio
+2026-01-11T21:43:18,evolution,where are you located,location
+2026-01-11T21:43:30,evolution,is there a free trial,fallback_enquiry
+2026-01-11T22:00:02,evolution,sofkjep[esojf,fallback_enquiry
+2026-01-11T22:08:14,evolution,whats the timetabke,fallback_enquiry
+2026-01-11T22:08:23,evolution,who are the coaches,coaches_list
+2026-01-11T22:08:35,evolution,ok i want to sign up,fallback_enquiry
+2026-01-12T21:36:54,evolution,Tell me about evolution fitness,links_knowledge
+2026-01-12T21:37:04,evolution,Whats the timetable monday morning?,timetable
+2026-01-12T21:37:14,evolution,Tell me about the class 'Move',class_inferred
+2026-01-12T21:37:27,evolution,So you offer both group and personalised 1:1 sessions?,classes_overview
+2026-01-12T21:37:34,evolution,Who are the coaches?,coaches_list
+2026-01-12T21:37:44,evolution,Tell m more about nick,coach_bio
+2026-01-12T21:37:52,evolution,tell me more about 1:1 sessions,classes_overview
+2026-01-12T21:37:58,evolution,where are you located?,location
+2026-01-12T21:38:03,evolution,great sign me up!,fallback_enquiry
+2026-01-12T22:12:23,evolution,tell me about evolution fitness,links_knowledge
+2026-01-12T22:12:37,evolution,whats classes are on monday morning?,timetable
+2026-01-12T22:12:44,evolution,tell me more about move,links_knowledge
+2026-01-12T22:13:06,evolution,tell me about evolution fitness,links_knowledge
+2026-01-12T22:13:14,evolution,whats the timetable on monday morning,timetable
+2026-01-12T22:13:21,evolution,tell me about sgpt,class_inferred
+2026-01-12T22:13:31,evolution,so you offer group and 1:1 sessions,classes_overview
+2026-01-12T22:13:37,evolution,who are the coaches,coaches_list
+2026-01-12T22:13:42,evolution,tell me about nick,coach_bio
+2026-01-12T22:13:48,evolution,where are you located,location
+2026-01-12T22:13:53,evolution,great sign me up!,fallback_enquiry
+2026-01-28T23:17:10,evolution,who are the coaches,coaches_list
+2026-01-28T23:17:16,evolution,tell me about nick,coach_bio
+2026-01-28T23:17:23,evolution,whats the timetable,fallback_enquiry
+2026-01-28T23:17:28,evolution,what classes monday morning,timetable
+2026-01-28T23:17:33,evolution,tell me about move,class_inferred
+2026-01-29T17:10:04,evolution,tell me about your coaches,coaches_list
+2026-01-29T17:10:11,evolution,who is nick,coach_bio
+2026-01-29T17:10:19,evolution,what classes are monday morning,timetable
+2026-01-29T17:10:24,evolution,what is move,class_inferred
+2026-01-29T17:10:33,evolution,whats the schedule,fallback_enquiry
+2026-01-29T17:10:39,evolution,great sign me up,fallback_enquiry
+2026-01-29T17:10:56,evolution,where is the gym located?,location
+2026-01-29T17:11:04,evolution,is it good for beginners,fallback_enquiry
+2026-01-29T17:47:39,evolution,whats the timetable,fallback_enquiry
+2026-01-29T17:47:47,evolution,what classes are monday morning,timetable
+2026-01-29T17:47:51,evolution,who are the coaches,coaches_list
+2026-01-29T17:47:59,evolution,tell me more about nick,coach_bio
+2026-01-29T17:51:30,evolution,whats the timetable,fallback_enquiry
+2026-01-29T17:51:35,evolution,link me the timetable,fallback_enquiry
+2026-01-29T17:51:52,evolution,Can I see the timetable?,fallback_enquiry
+2026-01-29T20:41:37,evolution,whats the timetable,fallback_enquiry
+2026-01-29T20:41:53,evolution,link the timetable,fallback_enquiry
+2026-01-29T20:41:59,evolution,who are the coaches,coaches_list
+2026-01-29T20:44:33,evolution,what classes are monday morning,timetable
+2026-01-29T20:44:40,evolution,send me the timetabke,fallback_enquiry
+2026-01-29T20:45:04,evolution,whats 21 day transformation,challenge
+2026-01-29T23:17:08,evolution,classes monday morning,timetable
+2026-01-29T23:17:16,evolution,monday morning classes,timetable
+2026-02-02T23:12:59,evolution,how much does the gym cos,fallback_enquiry
+2026-02-02T23:13:04,evolution,whats the pricing,fallback_enquiry
+2026-02-02T23:13:10,evolution,who are the coaches,coaches_list
+2026-02-02T23:13:17,evolution,whats the timetable,timetable_link
+2026-02-02T23:13:27,evolution,do you have group classes,classes_overview

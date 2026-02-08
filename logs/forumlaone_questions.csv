@@ -1,0 +1,50 @@
+timestamp,gym,question,source
+2026-01-29T21:21:27,forumlaone,how much is a membership,fallback_enquiry
+2026-01-29T21:21:44,forumlaone,who are the coaches,coaches_list
+2026-01-29T22:06:04,forumlaone,how much is a membership,faq_match
+2026-01-29T22:06:12,forumlaone,im interested,fallback_enquiry
+2026-01-29T22:06:39,forumlaone,whats the timetable monday,timetable
+2026-01-29T22:06:43,forumlaone,monday morning,timetable
+2026-01-29T22:06:56,forumlaone,send me the timetable,faq_match
+2026-01-29T22:07:16,forumlaone,tell me about circuit,faq_match
+2026-01-29T22:07:28,forumlaone,whats the circuit class,classes_overview
+2026-01-29T22:07:47,forumlaone,do you have sunbeds,timetable
+2026-01-29T22:07:53,forumlaone,sunbed,timetable
+2026-01-29T22:09:54,forumlaone,do you have sunbeds,links_knowledge
+2026-01-29T22:10:01,forumlaone,how much are sunbeds,links_knowledge
+2026-01-29T22:10:15,forumlaone,do you offer group sessions,classes_overview
+2026-01-29T22:10:23,forumlaone,who are the coaches,coaches_list
+2026-01-29T22:10:29,forumlaone,who's the owner,faq_match
+2026-01-29T22:10:37,forumlaone,send the link,fallback_enquiry
+2026-01-29T22:52:29,forumlaone,hi how much is a membership,faq_match
+2026-01-29T22:52:37,forumlaone,what about weekly,fallback_enquiry
+2026-01-29T22:52:47,forumlaone,how much is a weekly membership,faq_match
+2026-01-29T22:52:58,forumlaone,who are the coaches,coaches_list
+2026-01-29T22:53:11,forumlaone,whats are there specialisations,timetable
+2026-01-29T23:04:47,forumlaone,classes monday morning,timetable
+2026-01-29T23:04:52,forumlaone,monday evening,timetable
+2026-01-29T23:05:07,forumlaone,who are the coaches,coaches_list
+2026-01-29T23:06:22,forumlaone,classes monday evening,timetable
+2026-01-29T23:06:31,forumlaone,timetable,fallback_enquiry
+2026-01-29T23:17:25,forumlaone,classes monday evening,timetable
+2026-01-29T23:18:13,forumlaone,classes monday afternoon,timetable
+2026-01-29T23:18:20,forumlaone,classes monday 12:15,timetable
+2026-01-29T23:21:25,forumlaone,what classes monday afternoon,timetable
+2026-01-29T23:21:32,forumlaone,what classes monday morning,timetable
+2026-01-29T23:21:40,forumlaone,what classes monday evening,timetable
+2026-01-29T23:23:14,forumlaone,what classes are monday afternoon,timetable
+2026-01-29T23:23:23,forumlaone,what classes are monday morning,timetable
+2026-01-29T23:23:30,forumlaone,what classes are monday,timetable
+2026-01-29T23:27:23,forumlaone,what classes are monday morning,timetable
+2026-01-29T23:27:30,forumlaone,what classes monday,timetable
+2026-01-29T23:30:10,forumlaone,what classes monday morning,timetable
+2026-01-29T23:30:21,forumlaone,what classes monday afternoon,timetable
+2026-01-29T23:47:05,forumlaone,what classes are monday,timetable
+2026-01-29T23:47:11,forumlaone,what classes are monday morning,timetable
+2026-01-29T23:47:20,forumlaone,what classes are monday evening,timetable
+2026-01-29T23:47:29,forumlaone,what classes are monday afternoon,timetable
+2026-02-01T21:39:05,forumlaone,what classes are monday morning?,timetable
+2026-02-01T21:55:45,forumlaone,tell me about what classes you offer,classes_overview
+2026-02-01T21:55:58,forumlaone,do you have sunbeds,links_knowledge
+2026-02-01T21:56:08,forumlaone,how much are they,faq_match
+2026-02-01T21:56:27,forumlaone,how much are sunbeds,links_knowledge

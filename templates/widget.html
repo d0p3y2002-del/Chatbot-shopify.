@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{ brand.gym_display_name }} — Chat</title>
+
+  <style>
+    /* Default = DARK */
+    :root{
+      --bg:#0b0b0d;
+      --panel:#111116;
+      --panel2:#15151c;
+      --text:#f2f2f4;
+      --muted:#a9a9b2;
+      --border:rgba(255,255,255,.10);
+      --accent: {{ brand.primary_color }};
+      --bubble:#181821;
+      --bubble2:#0f0f14;
+
+      /* extras for light mode */
+      --input-bg: rgba(255,255,255,.04);
+      --link-bg: rgba(255,255,255,.06);
+      --user-bubble: rgba(255,255,255,.06);
+      --user-border: rgba(255,255,255,.12);
+      --shadow: rgba(0,0,0,.18);
+      --modal-bg: rgba(0,0,0,.60);
+    }
+
+    /* LIGHT overrides (driven by Excel Brand.Theme = "light") */
+    body[data-theme="light"]{
+      --bg:#ffffff;
+      --panel:#f6f6f8;
+      --panel2:#ffffff;
+      --text:#111111;
+      --muted:#5a5a66;
+      --border:rgba(0,0,0,.12);
+      --bubble:#f1f1f4;
+      --bubble2:#ffffff;
+
+      --input-bg: rgba(0,0,0,.04);
+      --link-bg: rgba(0,0,0,.04);
+      --user-bubble: rgba(0,0,0,.06);
+      --user-border: rgba(0,0,0,.12);
+      --shadow: rgba(0,0,0,.10);
+      --modal-bg: rgba(0,0,0,.35);
+    }
+
+    *{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;}
+    body{
+      margin:0;background:var(--bg);color:var(--text);
+      height:100vh;display:flex;flex-direction:column;
+    }
+
+    .topbar{
+      display:flex;gap:10px;align-items:center;
+      padding:14px 14px;border-bottom:1px solid var(--border);
+      background:linear-gradient(180deg,var(--panel),rgba(17,17,22,.85));
+    }
+    body[data-theme="light"] .topbar{
+      background:linear-gradient(180deg,var(--panel),rgba(246,246,248,.85));
+    }
+
+    .logo{
+      width:30px;height:30px;border-radius:8px;overflow:hidden;
+      background:var(--panel2);display:flex;align-items:center;justify-content:center;
+      border:1px solid var(--border);
+    }
+    .logo img{width:100%;height:100%;object-fit:contain;}
+
+    .titlewrap{display:flex;flex-direction:column;line-height:1.2}
+    .title{font-weight:700;font-size:14px}
+    .subtitle{font-size:12px;color:var(--muted)}
+
+    .chat{
+      flex:1;overflow:auto;padding:16px;
+    }
+    .row{display:flex;margin:10px 0;}
+    .row.user{justify-content:flex-end;}
+    .bubble{
+      max-width:85%;
+      border:1px solid var(--border);
+      background:var(--bubble);
+      padding:10px 12px;border-radius:12px;
+      white-space:pre-wrap;
+      box-shadow:0 10px 25px var(--shadow);
+      font-size:13.5px;
+    }
+    .row.user .bubble{
+      background:var(--user-bubble);
+      border-color:var(--user-border);
+    }
+
+    .links{
+      display:flex;flex-wrap:wrap;gap:8px;margin-top:10px
+    }
+    .linkbtn{
+      border:1px solid var(--border);
+      background:var(--link-bg);
+      color:var(--text);
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12.5px;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+    }
+    .linkbtn:hover{border-color:rgba(255,255,255,.25)}
+
+    /* ✅ CTA bar: hidden by default; shown only when needed */
+    .ctaBar{
+      display:none;
+      padding:10px 14px 0 14px;
+      background:linear-gradient(0deg,var(--panel),rgba(17,17,22,.85));
+      border-top:1px solid var(--border);
+    }
+    body[data-theme="light"] .ctaBar{
+      background:linear-gradient(0deg,var(--panel),rgba(246,246,248,.85));
+    }
+    .ctaButton{
+      width:100%;
+      border:none;
+      background:var(--accent);
+      color:#000;
+      font-weight:800;
+      padding:12px 14px;
+      border-radius:12px;
+      cursor:pointer;
+      box-shadow:0 12px 30px rgba(0,0,0,.25);
+    }
+
+    .composer{
+      padding:10px 14px 14px 14px;
+      background:linear-gradient(0deg,var(--panel),rgba(17,17,22,.85));
+    }
+    body[data-theme="light"] .composer{
+      background:linear-gradient(0deg,var(--panel),rgba(246,246,248,.85));
+    }
+
+    .inputrow{display:flex;gap:10px;}
+    input{
+      flex:1;border-radius:12px;border:1px solid var(--border);
+      background:var(--input-bg);color:var(--text);
+      padding:12px 12px;font-size:13.5px;outline:none;
+    }
+    .send{
+      width:74px;border:none;border-radius:12px;
+      background:var(--accent);color:#000;font-weight:800;cursor:pointer;
+    }
+
+    /* Powered by */
+    .powered{
+      padding: 8px 14px 14px;
+      font-size: 11.5px;
+      text-align: center;
+      color: var(--muted);
+      background: linear-gradient(0deg,var(--panel),rgba(17,17,22,.85));
+      border-top: 1px solid var(--border);
+    }
+    body[data-theme="light"] .powered{
+      background: linear-gradient(0deg,var(--panel),rgba(246,246,248,.85));
+    }
+    .powered a{
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Modal */
+    .modalBg{
+      position:fixed;inset:0;background:var(--modal-bg);
+      display:none;align-items:center;justify-content:center;padding:16px;
+    }
+    .modal{
+      width:100%;max-width:520px;
+      background:var(--panel);border:1px solid var(--border);
+      border-radius:16px;padding:14px;
+      box-shadow:0 30px 80px rgba(0,0,0,.55);
+    }
+    .modal h3{margin:0 0 10px 0;font-size:15px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .grid .full{grid-column:1/-1}
+    textarea{
+      width:100%;min-height:110px;resize:vertical;
+      border-radius:12px;border:1px solid var(--border);
+      background:var(--input-bg);color:var(--text);
+      padding:10px 12px;font-size:13.5px;outline:none;
+    }
+    .modalActions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
+    .btn{
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      padding:10px 12px;border-radius:12px;cursor:pointer;
+    }
+    .btn.primary{
+      border:none;background:var(--accent);color:#000;font-weight:800;
+    }
+
+    @media (max-width:420px){
+      .chat{padding:12px}
+      .bubble{max-width:92%}
+      .grid{grid-template-columns:1fr}
+      .send{width:68px}
+    }
+  </style>
+</head>
+
+<!-- Theme is controlled by Excel: Brand -> Key=Theme, Value=dark/light -->
+<body data-theme="{{ (brand.theme or 'dark')|lower }}">
+  <div class="topbar">
+    <div class="logo">
+      {% if brand.logo_url %}
+        <img src="{{ brand.logo_url }}" alt="logo"/>
+      {% else %}
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:800;">≡</div>
+      {% endif %}
+    </div>
+    <div class="titlewrap">
+      <div class="title">{{ brand.gym_display_name }}</div>
+      <div class="subtitle">AI receptionist</div>
+    </div>
+  </div>
+
+  <div id="chat" class="chat"></div>
+
+  <!-- ✅ CTA ABOVE INPUT, but hidden unless needed -->
+  <div id="ctaBar" class="ctaBar">
+    <button id="ctaBtn" class="ctaButton">Send enquiry</button>
+  </div>
+
+  <div class="composer">
+    <div class="inputrow">
+      <input id="q" placeholder="Ask about classes, coaches, joining…" />
+      <button id="send" class="send">Send</button>
+    </div>
+  </div>
+
+  <div class="powered">
+    Powered by
+    <a href="https://gym-chat-bots.myshopify.com/" target="_blank" rel="noopener noreferrer">
+      Gym Chat Bots
+    </a>
+  </div>
+
+  <!-- Modal -->
+  <div id="modalBg" class="modalBg">
+    <div class="modal">
+      <h3 id="modalTitle">Send an enquiry</h3>
+      <div class="grid">
+        <input id="leadName" placeholder="Name" />
+        <input id="leadPhone" placeholder="Phone" />
+        <input id="leadEmail" class="full" placeholder="Email" />
+        <div class="full">
+          <textarea id="leadMsg" placeholder="Message"></textarea>
+        </div>
+      </div>
+      <div class="modalActions">
+        <button id="closeModal" class="btn">Cancel</button>
+        <button id="submitLead" class="btn primary">Send details</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const gymName = {{ gym_name|tojson }};
+    const brand = {{ brand|tojson }};
+
+    // ✅ Persist one session id per browser tab (per gym)
+    const SESSION_KEY = `gymchat_session_${gymName}`;
+    let sessionId = sessionStorage.getItem(SESSION_KEY);
+    if (!sessionId) {
+      sessionId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random());
+      sessionStorage.setItem(SESSION_KEY, sessionId);
+    }
+
+    const chatEl = document.getElementById("chat");
+    const qEl = document.getElementById("q");
+    const sendEl = document.getElementById("send");
+
+    const ctaBar = document.getElementById("ctaBar");
+    const ctaBtn = document.getElementById("ctaBtn");
+
+    const modalBg = document.getElementById("modalBg");
+    const closeModal = document.getElementById("closeModal");
+    const submitLead = document.getElementById("submitLead");
+    const modalTitle = document.getElementById("modalTitle");
+    const leadMsg = document.getElementById("leadMsg");
+
+    let currentCTA = null; // {type,label,form_title,default_message}
+
+    function showCTA(cta) {
+      currentCTA = cta || null;
+      if (!currentCTA) {
+        ctaBar.style.display = "none";
+        return;
+      }
+      ctaBtn.textContent = currentCTA.label || "Send enquiry";
+      ctaBar.style.display = "block";
+    }
+
+    function hideCTA() {
+      currentCTA = null;
+      ctaBar.style.display = "none";
+    }
+
+    function addBubble(text, who="bot", links=[]) {
+      const row = document.createElement("div");
+      row.className = "row " + (who === "user" ? "user" : "bot");
+
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+      bubble.textContent = text;
+
+      if (Array.isArray(links) && links.length) {
+        const linksDiv = document.createElement("div");
+        linksDiv.className = "links";
+        links.forEach(l => {
+          const a = document.createElement("a");
+          a.className = "linkbtn";
+          a.href = l.url;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.textContent = l.label || "Open link";
+          linksDiv.appendChild(a);
+        });
+        bubble.appendChild(linksDiv);
+      }
+
+      row.appendChild(bubble);
+      chatEl.appendChild(row);
+      chatEl.scrollTop = chatEl.scrollHeight;
+    }
+
+    // Welcome message (force first letter uppercase)
+    const welcome = (brand.welcome_message || "Hi — welcome! How can I help?");
+    const fixedWelcome = welcome.length ? welcome[0].toUpperCase() + welcome.slice(1) : welcome;
+    addBubble(fixedWelcome, "bot");
+
+    async function ask(question) {
+      // If user continues chatting normally, remove CTA unless backend asks for it again
+      hideCTA();
+
+      addBubble(question, "user");
+      qEl.value = "";
+
+      try {
+        const res = await fetch(`/chat/${encodeURIComponent(gymName)}`, {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({ question, session_id: sessionId })
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          addBubble("Something went wrong. Please try again.", "bot");
+          return;
+        }
+
+        addBubble(data.answer || "Thanks — how can I help?", "bot", data.links || []);
+
+        // ✅ Only show CTA button when backend says it's needed
+        if (data.cta && data.cta.type === "enquiry") {
+          showCTA(data.cta);
+        } else {
+          hideCTA();
+        }
+
+      } catch (e) {
+        addBubble("Couldn’t reach the server. Please try again.", "bot");
+      }
+    }
+
+    sendEl.addEventListener("click", () => {
+      const q = qEl.value.trim();
+      if (!q) return;
+      ask(q);
+    });
+
+    qEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        const q = qEl.value.trim();
+        if (!q) return;
+        ask(q);
+      }
+    });
+
+    // CTA button opens modal
+    ctaBtn.addEventListener("click", () => {
+      if (!currentCTA) return;
+      modalTitle.textContent = currentCTA.form_title || "Send an enquiry";
+      leadMsg.value = currentCTA.default_message || "";
+      modalBg.style.display = "flex";
+    });
+
+    closeModal.addEventListener("click", () => {
+      modalBg.style.display = "none";
+    });
+
+    modalBg.addEventListener("click", (e) => {
+      if (e.target === modalBg) modalBg.style.display = "none";
+    });
+
+    // Demo submit (replace with your real submit endpoint if you have one)
+    submitLead.addEventListener("click", () => {
+      modalBg.style.display = "none";
+      hideCTA(); // after sending, hide CTA
+      addBubble("Thanks — we’ve received your enquiry and the team will be in touch shortly.", "bot");
+    });
+  </script>
+
+</body>
+</html>

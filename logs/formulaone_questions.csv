@@ -1,0 +1,67 @@
+timestamp,gym,question,source
+2026-02-01T22:00:30,formulaone,can i have a link for timetable,faq_match
+2026-02-01T22:08:25,formulaone,link me the timeable,fallback_enquiry
+2026-02-01T22:10:39,formulaone,link me the timetable,faq_match
+2026-02-01T22:20:29,formulaone,sign me up,fallback_enquiry
+2026-02-01T22:20:42,formulaone,who are the coaches,coaches_list
+2026-02-01T22:20:50,formulaone,do you offer group classes,classes_overview
+2026-02-01T22:20:57,formulaone,are there sunbeds,links_knowledge
+2026-02-01T23:07:59,formulaone,do you offer group classes,classes_overview
+2026-02-01T23:08:09,formulaone,who are the coaches,coaches_list
+2026-02-01T23:08:31,formulaone,are there sunbeds?,links_knowledge
+2026-02-01T23:11:46,formulaone,do you offer group classes,classes_overview
+2026-02-01T23:11:54,formulaone,who are your coaches,coaches_list
+2026-02-02T21:37:55,formulaone,where are you located,faq_match
+2026-02-02T21:38:07,formulaone,do you offer group classes,classes_overview
+2026-02-02T21:38:15,formulaone,who are the coaches,coaches_list
+2026-02-02T21:45:18,formulaone,where are you located,faq_match
+2026-02-02T21:45:24,formulaone,who are the coaches,coaches_list
+2026-02-02T21:45:33,formulaone,are there group classes,classes_overview
+2026-02-02T21:45:51,formulaone,whats the timetable monday morning,timetable
+2026-02-02T21:45:57,formulaone,whats circuit,fallback_enquiry
+2026-02-02T21:46:31,formulaone,What is circuits class?,classes_overview
+2026-02-02T21:47:12,formulaone,whats spinning,links_knowledge
+2026-02-02T21:47:25,formulaone,whats mixed boxing,links_knowledge
+2026-02-02T21:47:34,formulaone,whats the timetable tuesday,timetable
+2026-02-02T21:47:42,formulaone,whats running club,links_knowledge
+2026-02-02T21:47:49,formulaone,whos maria,coach_bio
+2026-02-02T21:47:57,formulaone,whats the pricing,links_knowledge
+2026-02-02T21:58:45,formulaone,whats the pricing,fallback_enquiry
+2026-02-02T21:58:54,formulaone,how much is a day pass,faq_match
+2026-02-02T21:59:01,formulaone,who are the coaches,coaches_list
+2026-02-02T21:59:05,formulaone,are there group classes,classes_overview
+2026-02-02T21:59:17,formulaone,who is lucy,coach_bio
+2026-02-02T21:59:28,formulaone,whats the timetable for monday morning,timetable
+2026-02-02T21:59:32,formulaone,whats circuit,faq_match
+2026-02-02T22:00:00,formulaone,what are the membership options,faq_match
+2026-02-02T22:31:51,formulaone,whats the pricing,membership_link
+2026-02-02T22:32:15,formulaone,how much is a membership,faq_match
+2026-02-02T22:32:26,formulaone,whats the cost of going to the gym,membership_link
+2026-02-02T22:50:23,formulaone,whats the pricing,membership_link
+2026-02-02T23:11:40,formulaone,whats the pricing,pricing_match
+2026-02-02T23:11:52,formulaone,how much for a day pass,pricing_match
+2026-02-02T23:12:00,formulaone,how much for a week pass,pricing_match
+2026-02-02T23:12:08,formulaone,how much does it cost,pricing_match
+2026-02-02T23:12:17,formulaone,how much does it cost to visit for the day,pricing_match
+2026-02-03T17:25:46,formulaone,what classes do you have,classes_overview
+2026-02-03T17:26:02,formulaone,what group sessions are there,classes_overview
+2026-02-03T17:26:08,formulaone,whats the timetable,timetable_link
+2026-02-03T17:26:13,formulaone,what classes on monday,timetable
+2026-02-03T17:26:21,formulaone,when are circuit classes,classes_overview
+2026-02-03T17:27:58,formulaone,when are circuit classes,classes_overview
+2026-02-03T17:28:14,formulaone,when are there group classes,classes_overview
+2026-02-03T17:28:26,formulaone,what classes are on monday,timetable
+2026-02-03T17:37:10,formulaone,when are circuit classes,timetable_class_search
+2026-02-03T17:37:25,formulaone,when is there mixed boxing,timetable_class_search
+2026-02-03T17:37:39,formulaone,when are there group classes,timetable_all
+2026-02-08T21:37:10,formulaone,what classes do you offer?,timetable_all
+2026-02-08T21:37:43,formulaone,when are the spin classes,classes_overview
+2026-02-08T21:37:51,formulaone,when is spinning,timetable_class_search
+2026-02-08T21:37:57,formulaone,when else is it?,fallback_enquiry
+2026-02-08T21:38:20,formulaone,when is run club,timetable_class_search
+2026-02-08T21:38:28,formulaone,how much is pricing,pricing_match
+2026-02-08T21:38:32,formulaone,what about weekly,fallback_enquiry
+2026-02-08T21:38:40,formulaone,weekly pricing,pricing_match
+2026-02-08T21:38:45,formulaone,daily pricing,pricing_match
+2026-02-08T21:38:52,formulaone,sign me up,fallback_enquiry
+2026-02-08T21:44:49,formulaone,sign me up,links_knowledge
